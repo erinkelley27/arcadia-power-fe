@@ -1,4 +1,4 @@
-import { CREATE_CONTACT, DELETE_CONTACT } from '../constants/contact'
+import { CREATE_CONTACT, DELETE_CONTACT, UPDATE_CONTACT } from '../constants/contact'
 
 export function createContact(name, email, phone, id) {
     return {
@@ -17,6 +17,16 @@ export function deleteContact(id) {
         type: DELETE_CONTACT,
         payload: {
             id
+        }
+    }
+}
+
+export function updateContact(id, updatedContact) {
+    return {
+        type: UPDATE_CONTACT,
+        payload: {
+            id,
+            updatedContact
         }
     }
 }
