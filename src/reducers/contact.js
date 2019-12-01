@@ -15,6 +15,7 @@ export default function contactReducer(state = DEFAULT_STATE, action) {
         return {
             ...state,
             contacts: state.contacts.filter(contact => {
+                console.log(contact.id !== action.payload.id)
                 return contact.id !== action.payload.id
             })
         }
@@ -25,6 +26,7 @@ export default function contactReducer(state = DEFAULT_STATE, action) {
                 if (contact.id !== action.payload.id) {
                     return contact
                 }
+                console.log(contact)
                 return {
                     ...contact,
                     ...action.payload.updatedContact

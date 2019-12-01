@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import { createContact } from '../actions/contact'
 
 class ContactForm extends Component {
-    constructor(props) {
-        super(props)
-    }
     handleSubmit = (evt) => {
         evt.preventDefault()
         let name = evt.target[0].value

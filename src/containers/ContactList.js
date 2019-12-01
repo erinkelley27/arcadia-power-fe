@@ -7,21 +7,19 @@ import { connect } from 'react-redux'
 import { deleteContact } from '../actions/contact'
 
 const Contacts = ({ contacts, onDelete }) => {
-    return (
-        <List>{
-            contacts.map((contact, index) => (
-                <Item
-                key={index}
-                {...contact}
-                onClick={evt => {
-                    evt.preventDefault()
-                    onDelete(index)
-                }}
-                />
-            ))}
-        </List>
-    )
-}
+    return <List>{
+      contacts.map((contact, index) => (
+        <Item
+          key={index}
+          {...contact}
+          onClick={e => {
+            e.preventDefault();
+            onDelete(contact.id);
+          }}
+        />
+      ))
+    }</List>;
+  }
 
 const mapStateToProps = state => ({
     contacts: state.contacts
