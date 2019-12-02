@@ -6,7 +6,6 @@ import './index.css';
 import App from './components/App';
 
 import store from './store'
-// import { createContact, deleteContact, updateContact } from './actions/contact'
 
 ReactDOM.render(
     <Provider store={store}>
