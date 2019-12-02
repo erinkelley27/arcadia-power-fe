@@ -4,9 +4,9 @@ import List from '../components/List'
 import Item from '../components/Item'
 
 import { connect } from 'react-redux'
-import { deleteContact, updateContact } from '../actions/contact'
+import { fetchContacts, deleteContact, updateContact } from '../actions/contact'
 
-const Contacts = ({ contacts, onDelete, onUpdate }) => {
+const Contacts = ({ contacts, deleteContact, updateContact }) => {
     return <List>{
       contacts.map((contact, index) => (
         <Item
@@ -14,11 +14,11 @@ const Contacts = ({ contacts, onDelete, onUpdate }) => {
           {...contact}
           onClick={evt => {
             evt.preventDefault();
-            onDelete(contact.id);
+            deleteContact(contact.id);
           }}
           onChange={evt => {
             evt.preventDefault()
-            onUpdate(contact.id, { [evt.target.name]: evt.target.value } )
+            updateContact(contact.id, { [evt.target.name]: evt.target.value } )
           }}
         />
       ))
@@ -30,8 +30,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    onDelete: id => dispatch(deleteContact(id)),
-    onUpdate: (id, update) => dispatch(updateContact(id, update))
+    fetchContacts: dispatch(fetchContacts()),
+    deleteContact: id => dispatch(deleteContact(id)),
+    updateContact: (id, update) => dispatch(updateContact(id, update))
 })
 
 const ContactList = connect(mapStateToProps, mapDispatchToProps)(Contacts)

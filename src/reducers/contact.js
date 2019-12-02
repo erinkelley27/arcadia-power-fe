@@ -1,11 +1,28 @@
-import { CREATE_CONTACT, DELETE_CONTACT, UPDATE_CONTACT } from "../constants/contact";
+import {
+  FETCH_CONTACTS_PENDING,
+  FETCH_CONTACTS_SUCCESS,
+  CREATE_CONTACT,
+  DELETE_CONTACT,
+  UPDATE_CONTACT
+} from "../constants/contact";
 
 const DEFAULT_STATE = {
-  contacts: []
+  isFetching: false,
+  contacts: [],
+  error: null
 }
 
 export default function contactReducer(state = DEFAULT_STATE, action) {
   switch (action.type) {
+    case FETCH_CONTACTS_PENDING:
+      return Object.assign({}, state, {
+        isFetching: true
+      })
+    case FETCH_CONTACTS_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        contacts: action.contacts
+      })
     case CREATE_CONTACT:
       return {
         ...state,
