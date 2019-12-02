@@ -1,13 +1,13 @@
 import React from 'react'
 
-const Item = ({ name = '', email = '', phone = '', onClick = () => {}}) => (
+const Item = ({ name = '', email = '', phone = '', onClick = () => {}, onChange = () => {} }) => (
   <tr>
     <td>{name}</td>
     <td>
-      <input name="email" type="text" value={email} />
+      <input onChange={onChange} name="email" type="text" value={email} />
     </td>
     <td>
-      <input name="phone" type="text" value={phone} />
+      <input onChange={onChange} name="phone" type="text" value={phone} />
     </td>
     <td>
       <button onClick={onClick}>Delete</button>

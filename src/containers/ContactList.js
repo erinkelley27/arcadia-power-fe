@@ -4,17 +4,21 @@ import List from '../components/List'
 import Item from '../components/Item'
 
 import { connect } from 'react-redux'
-import { deleteContact } from '../actions/contact'
+import { deleteContact, updateContact } from '../actions/contact'
 
-const Contacts = ({ contacts, onDelete }) => {
+const Contacts = ({ contacts, onDelete, onUpdate }) => {
     return <List>{
       contacts.map((contact, index) => (
         <Item
           key={index}
           {...contact}
-          onClick={e => {
-            e.preventDefault();
+          onClick={evt => {
+            evt.preventDefault();
             onDelete(contact.id);
+          }}
+          onChange={evt => {
+            evt.preventDefault()
+            onUpdate(contact.id, { [evt.target.name]: evt.target.value } )
           }}
         />
       ))
@@ -26,7 +30,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    onDelete: id => dispatch(deleteContact(id))
+    onDelete: id => dispatch(deleteContact(id)),
+    onUpdate: (id, update) => dispatch(updateContact(id, update))
 })
 
 const ContactList = connect(mapStateToProps, mapDispatchToProps)(Contacts)
