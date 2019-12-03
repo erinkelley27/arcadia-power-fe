@@ -9,7 +9,6 @@ function App() {
     <div className="App">
       <div className="header">
         <img src="https://d1hbpr09pwz0sk.cloudfront.net/logo_url/arcadia-power-ea488865" alt="logo" />
-        {/* <h1>Contact Manager</h1> */}
       </div>
       <NewContactForm />
       <ContactList />

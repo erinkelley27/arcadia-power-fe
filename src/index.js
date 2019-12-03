@@ -13,5 +13,5 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root'));
 
-console.log(store.getState())
-store.subscribe(() => console.log(store.getState()))
+// console.log(store.getState())
+// store.subscribe(() => console.log(store.getState()))

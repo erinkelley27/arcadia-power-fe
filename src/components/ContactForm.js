@@ -4,29 +4,33 @@ import { createContact } from '../actions/contact'
 import './ContactForm.css'
 
 class ContactForm extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            name: '',
+            email: '',
+            phone: ''
+        }
+    }
+
+    handleChange = (evt) => {
+        this.setState({ [evt.target.name]: evt.target.value })
+    }
+
     handleSubmit = (evt) => {
         evt.preventDefault()
-        
-        let name = evt.target[0].value
-        let email = evt.target[1].value
-        let phone = evt.target[2].value
-        console.log(name, email, phone)
-        this.props.dispatch(createContact(name, email, phone))
-        evt.target[0].value = ''
-        evt.target[1].value = ''
-        evt.target[2].value = ''
+        this.props.dispatch(createContact(this.state.name, this.state.email, this.state.phone))
     }
     render() {
-        console.log(this.props)
         return (
             <div className='ContactForm'>
                 <form onSubmit={this.handleSubmit}>
                     <label>Name</label>
-                    <input className='input-field' type='text' />
+                    <input onChange={this.handleChange} className='input-field' name='name' type='text' />
                     <label>Email</label>
-                    <input className='input-field' type='text' />
+                    <input onChange={this.handleChange} className='input-field' name='email' type='text' />
                     <label>Phone</label>
-                    <input className='input-field' type='text' />
+                    <input onChange={this.handleChange} className='input-field' name='phone' type='text' />
                     <input className='submit' type='submit' />
                 </form>
             </div>

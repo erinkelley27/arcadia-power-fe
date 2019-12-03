@@ -29,7 +29,6 @@ export function fetchContacts() {
         dispatch(fetchContactsPending())
         return axios.get('http://localhost:3001/contacts')
         .then(res => {
-            console.log(res)
             dispatch(fetchContactsSuccess(res.data))
         })
     }
