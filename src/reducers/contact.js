@@ -1,6 +1,7 @@
 import {
   FETCH_CONTACTS_PENDING,
   FETCH_CONTACTS_SUCCESS,
+  FETCH_CONTACTS_FAILURE,
   CREATE_CONTACT_PENDING,
   CREATE_CONTACT_SUCCESS,
   DELETE_CONTACT_PENDING,
@@ -28,6 +29,10 @@ export default function contactReducer(state = DEFAULT_STATE, action) {
       return Object.assign({}, state, {
         isFetching: false,
         contacts: action.contacts
+      })
+    case FETCH_CONTACTS_FAILURE:
+      return Object.assign({}, state, {
+        error: true
       })
     case CREATE_CONTACT_PENDING:
         return Object.assign({}, state, {

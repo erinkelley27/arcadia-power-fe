@@ -6,27 +6,32 @@ import Item from '../components/Item'
 import { connect } from 'react-redux'
 import { fetchContacts, deleteContact, updateContact } from '../actions/contact'
 
-const Contacts = ({ contacts, deleteContact, updateContact }) => {
-    return <List>{
-      contacts.map((contact, index) => (
-        <Item
-          key={index}
-          {...contact}
-          onClick={evt => {
-            evt.preventDefault();
-            deleteContact(contact.id);
-          }}
-          onChange={evt => {
-            evt.preventDefault()
-            updateContact(contact.id, { [evt.target.name]: evt.target.value } )
-          }}
-        />
-      ))
-    }</List>;
+const Contacts = ({ contacts, error, deleteContact, updateContact }) => {
+    if (error) {
+      return <p className='create-error'>Error creating a new contact.</p>
+    } else {
+      return <List>{
+        contacts.map((contact, index) => (
+          <Item
+            key={index}
+            {...contact}
+            onClick={evt => {
+              evt.preventDefault();
+              deleteContact(contact.id);
+            }}
+            onChange={evt => {
+              evt.preventDefault()
+              updateContact(contact.id, { [evt.target.name]: evt.target.value } )
+            }}
+          />
+        ))
+      }</List>;
+    }
   }
 
 const mapStateToProps = state => ({
-    contacts: state.contacts
+    contacts: state.contacts,
+    error: state.error
 })
 
 const mapDispatchToProps = dispatch => ({

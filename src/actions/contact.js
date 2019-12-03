@@ -1,6 +1,7 @@
 import {
     FETCH_CONTACTS_PENDING,
     FETCH_CONTACTS_SUCCESS,
+    FETCH_CONTACTS_FAILURE,
     CREATE_CONTACT_PENDING,
     CREATE_CONTACT_SUCCESS,
     DELETE_CONTACT_PENDING,
@@ -24,12 +25,21 @@ export function fetchContactsSuccess(contacts) {
     }
 }
 
+export function fetchContactsFailure() {
+    return {
+        type: FETCH_CONTACTS_FAILURE
+    }
+}
+
 export function fetchContacts() {
     return dispatch => {
         dispatch(fetchContactsPending())
         return axios.get('http://localhost:3001/contacts')
         .then(res => {
             dispatch(fetchContactsSuccess(res.data))
+        })
+        .catch(err => {
+            dispatch(fetchContactsFailure())
         })
     }
 }
