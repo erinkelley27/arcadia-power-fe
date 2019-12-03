@@ -4,10 +4,13 @@ import {
   FETCH_CONTACTS_FAILURE,
   CREATE_CONTACT_PENDING,
   CREATE_CONTACT_SUCCESS,
+  CREATE_CONTACT_FAILURE,
   DELETE_CONTACT_PENDING,
   DELETE_CONTACT_SUCCESS,
+  DELETE_CONTACT_FAILURE,
   UPDATE_CONTACT_PENDING,
   UPDATE_CONTACT_SUCCESS,
+  UPDATE_CONTACT_FAILURE
 } from "../constants/contact";
 
 const DEFAULT_STATE = {
@@ -28,7 +31,8 @@ export default function contactReducer(state = DEFAULT_STATE, action) {
     case FETCH_CONTACTS_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
-        contacts: action.contacts
+        contacts: action.contacts,
+        error: false
       })
     case FETCH_CONTACTS_FAILURE:
       return Object.assign({}, state, {
@@ -42,8 +46,13 @@ export default function contactReducer(state = DEFAULT_STATE, action) {
       return {
         ...state,
         isCreating: false,
-        contacts: [...state.contacts, action.payload]
+        contacts: [...state.contacts, action.payload],
+        error: false
       }
+    case CREATE_CONTACT_FAILURE:
+      return Object.assign({}, state, {
+        error: true
+      })
     case DELETE_CONTACT_PENDING:
         return Object.assign({}, state, {
           isDeleting: true
@@ -52,10 +61,15 @@ export default function contactReducer(state = DEFAULT_STATE, action) {
         return {
             ...state,
             isDeleting: false,
+            error: false,
             contacts: state.contacts.filter(contact => {
                 return contact.id !== action.payload.id
             })
         }
+    case DELETE_CONTACT_FAILURE:
+      return Object.assign({}, state, {
+        error: true
+      })
     case UPDATE_CONTACT_PENDING:
         return Object.assign({}, state, {
           isUpdating: true
@@ -64,6 +78,7 @@ export default function contactReducer(state = DEFAULT_STATE, action) {
         return {
             ...state,
             isUpdating: false,
+            error: false,
             contacts: state.contacts.map(contact => {
                 if (contact.id !== action.payload.id) {
                     return contact
@@ -74,6 +89,10 @@ export default function contactReducer(state = DEFAULT_STATE, action) {
                 }
             })
         }
+    case UPDATE_CONTACT_FAILURE:
+        return Object.assign({}, state, {
+          error: true
+        })
     default:
       return state;
   }

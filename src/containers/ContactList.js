@@ -8,7 +8,7 @@ import { fetchContacts, deleteContact, updateContact } from '../actions/contact'
 
 const Contacts = ({ contacts, error, deleteContact, updateContact }) => {
     if (error) {
-      return <p className='create-error'>Error creating a new contact.</p>
+      return <p className='create-error'>Error making your request.</p>
     } else {
       return <List>{
         contacts.map((contact, index) => (

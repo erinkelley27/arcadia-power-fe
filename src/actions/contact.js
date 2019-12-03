@@ -4,10 +4,13 @@ import {
     FETCH_CONTACTS_FAILURE,
     CREATE_CONTACT_PENDING,
     CREATE_CONTACT_SUCCESS,
+    CREATE_CONTACT_FAILURE,
     DELETE_CONTACT_PENDING,
     DELETE_CONTACT_SUCCESS,
+    DELETE_CONTACT_FAILURE,
     UPDATE_CONTACT_PENDING,
-    UPDATE_CONTACT_SUCCESS
+    UPDATE_CONTACT_SUCCESS,
+    UPDATE_CONTACT_FAILURE
   } from "../constants/contact";
 
 import axios from 'axios'
@@ -59,6 +62,12 @@ export function createContactSuccess(contact) {
     }
 }
 
+export function createContactFailure() {
+    return {
+        type: CREATE_CONTACT_FAILURE
+    }
+}
+
 export function createContact(name, email, phone, id) {
     return (dispatch, getState) => {
         dispatch(createContactPending())
@@ -72,7 +81,7 @@ export function createContact(name, email, phone, id) {
             dispatch(createContactSuccess(res.data))
         })
         .catch(err => {
-            console.log(err)
+            dispatch(createContactFailure())
         })
 
     }
@@ -93,6 +102,12 @@ export function deleteContactSuccess(id) {
     }
 }
 
+export function deleteContactFailure() {
+    return {
+        type: DELETE_CONTACT_FAILURE
+    }
+}
+
 export function deleteContact(id) {
     return (dispatch, getState) => {
         dispatch(deleteContactPending())
@@ -101,6 +116,7 @@ export function deleteContact(id) {
             dispatch(deleteContactSuccess(id))
         })
         .catch(err => {
+            dispatch(deleteContactFailure())
         })
     }
 }
@@ -121,6 +137,12 @@ export function updateContactSuccess(id, updatedContact) {
     }
 }
 
+export function updateContactFailure() {
+    return {
+        type: UPDATE_CONTACT_FAILURE
+    }
+}
+
 export function updateContact(id, updatedContact) {
     return (dispatch, getState) => {
         dispatch(updateContactPending())
@@ -131,7 +153,7 @@ export function updateContact(id, updatedContact) {
             dispatch(updateContactSuccess(id, updatedContact))
         })
         .catch(err => {
-            console.log(err)
+            dispatch(updateContactFailure())
         })
     }
 }
