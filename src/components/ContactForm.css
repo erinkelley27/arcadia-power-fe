@@ -1,11 +1,9 @@
 .ContactForm {
-    /* border: solid blue 2px; */
     background: #9CB6CE;
     padding: 15px 0;
   }
   
   form {
-    /* border: solid yellow 2px; */
     display: flex;
     justify-content: center;
   }
@@ -25,7 +23,6 @@
   .submit {
       border: none;
       background: #4B6983;
-      /* background: #178574; */
       color: white;
       font-family: 'Nunito Sans', sans-serif;
       font-size: 16px;
