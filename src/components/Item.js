@@ -6,10 +6,10 @@ const Item = ({ name = '', email = '', phone = '', onClick = () => {}, onChange 
   <tr>
     <td>{name}</td>
     <td>
-      <input className="item-input" onChange={onChange} name="email" type="text" defaultValue={email} />
+      <input className="item-input" onChange={onChange} name="email" type="text" value={email} />
     </td>
     <td>
-      <input className="item-input" onChange={onChange} name="phone" type="text" defaultValue={phone} />
+      <input className="item-input" onChange={onChange} name="phone" type="text" value={phone} />
     </td>
     <td>
       <button onClick={onClick}>Delete</button>

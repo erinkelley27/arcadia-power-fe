@@ -19,7 +19,8 @@ const DEFAULT_STATE = {
   isDeleting: false,
   isUpdating: false,
   contacts: [],
-  error: null
+  error: null,
+  payload: null
 }
 
 export default function contactReducer(state = DEFAULT_STATE, action) {
@@ -58,14 +59,14 @@ export default function contactReducer(state = DEFAULT_STATE, action) {
           isDeleting: true
         })
     case DELETE_CONTACT_SUCCESS:
-        return {
-            ...state,
-            isDeleting: false,
-            error: false,
-            contacts: state.contacts.filter(contact => {
-                return contact.id !== action.payload.id
-            })
-        }
+        return Object.assign({}, state, {
+          isDeleting: false,
+          error: false,
+          payload: action.payload.id,
+          contacts: state.contacts.filter(contact => {
+            return contact.id !== action.payload.id
+          })
+        })
     case DELETE_CONTACT_FAILURE:
       return Object.assign({}, state, {
         error: true
