@@ -6,7 +6,7 @@ import Item from '../components/Item'
 import { connect } from 'react-redux'
 import { fetchContacts, deleteContact, updateContact } from '../actions/contact'
 
-const Contacts = ({ contacts, deleteContact, updateContact }) => {
+const Contacts = ({ contacts, fetchContacts, deleteContact, updateContact }) => {
     return <List>{
       contacts.map((contact, index) => (
         <Item

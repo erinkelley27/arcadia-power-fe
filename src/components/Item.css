@@ -1,0 +1,10 @@
+.item-input {
+    width: 80%;
+    border: 1px solid #F3F9FB;
+    color: #18293C;
+    padding: 0 16px;
+    margin: 0 15px;
+    border-radius: 4px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+}

@@ -2,12 +2,15 @@ import React from 'react';
 import NewContactForm from '../containers/NewContactForm'
 import ContactList from '../containers/ContactList'
 
-import './App.css';
+import './App.css'
 
 function App() {
   return (
     <div className="App">
-      <h1>Arcadia Power FE</h1>
+      <div className="header">
+        <img src="https://d1hbpr09pwz0sk.cloudfront.net/logo_url/arcadia-power-ea488865" alt="logo" />
+        {/* <h1>Contact Manager</h1> */}
+      </div>
       <NewContactForm />
       <ContactList />
     </div>

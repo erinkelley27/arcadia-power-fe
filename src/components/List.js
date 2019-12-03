@@ -1,8 +1,10 @@
 import React from 'react'
 
+import './List.css'
+
 const List = ({ children = {} }) => (
   children.length > 0 ?
-    <table className="Table">
+    <table className="List">
       <thead>
         <tr>
           <th>Name</th>

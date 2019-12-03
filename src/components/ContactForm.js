@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { createContact } from '../actions/contact'
 
+import './ContactForm.css'
+
 class ContactForm extends Component {
     handleSubmit = (evt) => {
         evt.preventDefault()
@@ -19,12 +21,12 @@ class ContactForm extends Component {
             <div className='ContactForm'>
                 <form onSubmit={this.handleSubmit}>
                     <label>Name</label>
-                    <input type='text' />
+                    <input class='input-field' type='text' />
                     <label>Email</label>
-                    <input type='text' />
+                    <input class='input-field' type='text' />
                     <label>Phone</label>
-                    <input type='text' />
-                    <input type='submit' />
+                    <input class='input-field' type='text' />
+                    <input class='submit' type='submit' />
                 </form>
             </div>
         )

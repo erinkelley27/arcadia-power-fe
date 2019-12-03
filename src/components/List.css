@@ -1,0 +1,18 @@
+.List {
+    /* border: solid green 2px; */
+    margin: 25px auto;
+    background: #F3F9FB;
+    width: 75%;
+    border-radius: 4px;
+  }
+
+
+
+  button {
+    border: none;
+    background: #178574;
+    color: white;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    border-radius: 4px;
+  }
