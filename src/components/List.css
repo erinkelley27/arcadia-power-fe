@@ -1,11 +1,10 @@
 .List {
     margin: 25px auto;
+    padding: 10px;
     background: #F3F9FB;
     width: 75%;
     border-radius: 4px;
   }
-
-
 
   button {
     border: none;
