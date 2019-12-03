@@ -6,6 +6,8 @@ import {
     UPDATE_CONTACT
   } from "../constants/contact";
 
+import axios from 'axios'
+
 export function fetchContactsPending() {
     return {
         type: FETCH_CONTACTS_PENDING
@@ -22,11 +24,11 @@ export function fetchContactsSuccess(contacts) {
 export function fetchContacts() {
     return dispatch => {
         dispatch(fetchContactsPending())
-        return fetch('http://localhost:3001/contacts')
-        .then(res => res.json())
+        return axios.get('http://localhost:3001/contacts')
+        // .then(res => res.json())
         .then(res => {
             console.log(res)
-            dispatch(fetchContactsSuccess(res))
+            dispatch(fetchContactsSuccess(res.data))
         })
     }
 }

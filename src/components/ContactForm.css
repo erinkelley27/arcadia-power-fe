@@ -11,12 +11,12 @@
   }
 
   label, .input-field, .submit {
-    margin: 0 15px;
+    margin: 0 10px;
     border-radius: 4px;
   }
 
   .input-field {
-      width: 75px;
+      width: 40%;
       border: 1px solid #A0B7CD;
       color: #18293C;
       padding: 0 16px;

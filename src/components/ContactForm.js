@@ -21,12 +21,12 @@ class ContactForm extends Component {
             <div className='ContactForm'>
                 <form onSubmit={this.handleSubmit}>
                     <label>Name</label>
-                    <input class='input-field' type='text' />
+                    <input className='input-field' type='text' />
                     <label>Email</label>
-                    <input class='input-field' type='text' />
+                    <input className='input-field' type='text' />
                     <label>Phone</label>
-                    <input class='input-field' type='text' />
-                    <input class='submit' type='submit' />
+                    <input className='input-field' type='text' />
+                    <input className='submit' type='submit' />
                 </form>
             </div>
         )
