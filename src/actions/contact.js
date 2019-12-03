@@ -123,13 +123,11 @@ export function updateContact(id, updatedContact) {
         console.log('current state: ', getState())
         console.log(updatedContact)
         axios.put('http://localhost:3001/contacts/' + id, {
-            data: {
-                updatedContact
-            }
+            ...updatedContact
         })
         .then(res => {
+            console.log(res)
             console.log(res.data)
-            // need to figure out how to update the db with updatedContact info here
             dispatch(updateContactSuccess(id, updatedContact))
         })
         .catch(err => {
