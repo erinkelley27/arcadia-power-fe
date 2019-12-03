@@ -35,7 +35,7 @@ export function fetchContactsFailure() {
 }
 
 export function fetchContacts() {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(fetchContactsPending())
         return axios.get('http://localhost:3001/contacts')
         .then(res => {
@@ -69,7 +69,7 @@ export function createContactFailure() {
 }
 
 export function createContact(name, email, phone, id) {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(createContactPending())
         axios.post('http://localhost:3001/contacts', {
             name,
@@ -109,7 +109,7 @@ export function deleteContactFailure() {
 }
 
 export function deleteContact(id) {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(deleteContactPending())
         axios.delete('http://localhost:3001/contacts/' + id)
         .then(res => {
@@ -144,7 +144,7 @@ export function updateContactFailure() {
 }
 
 export function updateContact(id, updatedContact) {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(updateContactPending())
         axios.put('http://localhost:3001/contacts/' + id, {
             ...updatedContact
