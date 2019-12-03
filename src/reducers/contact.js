@@ -5,13 +5,16 @@ import {
   CREATE_CONTACT_SUCCESS,
   DELETE_CONTACT_PENDING,
   DELETE_CONTACT_SUCCESS,
-  UPDATE_CONTACT
+  UPDATE_CONTACT_PENDING,
+  UPDATE_CONTACT_SUCCESS,
+  // UPDATE_CONTACT
 } from "../constants/contact";
 
 const DEFAULT_STATE = {
   isFetching: false,
   isCreating: false,
   isDeleting: false,
+  isUpdating: false,
   contacts: [],
   error: null
 }
@@ -49,9 +52,14 @@ export default function contactReducer(state = DEFAULT_STATE, action) {
                 return contact.id !== action.payload.id
             })
         }
-    case UPDATE_CONTACT:
+    case UPDATE_CONTACT_PENDING:
+        return Object.assign({}, state, {
+          isUpdating: true
+        })
+    case UPDATE_CONTACT_SUCCESS:
         return {
             ...state,
+            isUpdating: false,
             contacts: state.contacts.map(contact => {
                 if (contact.id !== action.payload.id) {
                     return contact

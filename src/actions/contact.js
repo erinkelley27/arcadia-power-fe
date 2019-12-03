@@ -5,7 +5,9 @@ import {
     CREATE_CONTACT_SUCCESS,
     DELETE_CONTACT_PENDING,
     DELETE_CONTACT_SUCCESS,
-    UPDATE_CONTACT
+    UPDATE_CONTACT_PENDING,
+    UPDATE_CONTACT_SUCCESS
+    // UPDATE_CONTACT
   } from "../constants/contact";
 
 import axios from 'axios'
@@ -100,12 +102,48 @@ export function deleteContact(id) {
     }
 }
 
-export function updateContact(id, updatedContact) {
+export function updateContactPending() {
     return {
-        type: UPDATE_CONTACT,
+        type: UPDATE_CONTACT_PENDING
+    }
+}
+
+export function updateContactSuccess(id, updatedContact) {
+    return {
+        type: UPDATE_CONTACT_SUCCESS,
         payload: {
             id,
             updatedContact
         }
     }
 }
+
+export function updateContact(id, updatedContact) {
+    return (dispatch, getState) => {
+        dispatch(updateContactPending())
+        console.log('current state: ', getState())
+        console.log(updatedContact)
+        axios.put('http://localhost:3001/contacts/' + id, {
+            updatedContact
+        })
+        .then(res => {
+            console.log(res)
+            // need to figure out how to update the db with updatedContact info here
+            res.data 
+            dispatch(updateContactSuccess(id, updatedContact))
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+}
+
+// export function updateContact(id, updatedContact) {
+//     return {
+//         type: UPDATE_CONTACT,
+//         payload: {
+//             id,
+//             updatedContact
+//         }
+//     }
+// }
