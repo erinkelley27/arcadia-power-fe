@@ -16,7 +16,7 @@ The Aracida Power Contact manager is a full stack application built with a React
 * [React](https://reactjs.org/)
 * [Redux](https://redux.js.org/)
 * [Axios](https://github.com/axios/axios)
-* [Redux Thunk]()(https://github.com/reduxjs/redux-thunk)
+* [Redux Thunk](https://github.com/reduxjs/redux-thunk)
 
 ## Installation Instructions
 
