@@ -7,7 +7,6 @@ import {
   DELETE_CONTACT_SUCCESS,
   UPDATE_CONTACT_PENDING,
   UPDATE_CONTACT_SUCCESS,
-  // UPDATE_CONTACT
 } from "../constants/contact";
 
 const DEFAULT_STATE = {

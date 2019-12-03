@@ -7,7 +7,6 @@ import {
     DELETE_CONTACT_SUCCESS,
     UPDATE_CONTACT_PENDING,
     UPDATE_CONTACT_SUCCESS
-    // UPDATE_CONTACT
   } from "../constants/contact";
 
 import axios from 'axios'
@@ -124,12 +123,13 @@ export function updateContact(id, updatedContact) {
         console.log('current state: ', getState())
         console.log(updatedContact)
         axios.put('http://localhost:3001/contacts/' + id, {
-            updatedContact
+            data: {
+                updatedContact
+            }
         })
         .then(res => {
-            console.log(res)
+            console.log(res.data)
             // need to figure out how to update the db with updatedContact info here
-            res.data 
             dispatch(updateContactSuccess(id, updatedContact))
         })
         .catch(err => {
@@ -137,13 +137,3 @@ export function updateContact(id, updatedContact) {
         })
     }
 }
-
-// export function updateContact(id, updatedContact) {
-//     return {
-//         type: UPDATE_CONTACT,
-//         payload: {
-//             id,
-//             updatedContact
-//         }
-//     }
-// }
