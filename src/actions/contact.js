@@ -52,7 +52,6 @@ export function createContactSuccess(contact) {
 export function createContact(name, email, phone, id) {
     return (dispatch, getState) => {
         dispatch(createContactPending())
-        console.log('current state: ', getState())
         axios.post('http://localhost:3001/contacts', {
             name,
             email,
@@ -60,7 +59,6 @@ export function createContact(name, email, phone, id) {
             id
         })
         .then(res => {
-            console.log(res.data)
             dispatch(createContactSuccess(res.data))
         })
         .catch(err => {
@@ -88,14 +86,11 @@ export function deleteContactSuccess(id) {
 export function deleteContact(id) {
     return (dispatch, getState) => {
         dispatch(deleteContactPending())
-        console.log('current state: ', getState())
         axios.delete('http://localhost:3001/contacts/' + id)
         .then(res => {
-            console.log(res)
             dispatch(deleteContactSuccess(id))
         })
         .catch(err => {
-            console.log(err)
         })
     }
 }
@@ -119,14 +114,10 @@ export function updateContactSuccess(id, updatedContact) {
 export function updateContact(id, updatedContact) {
     return (dispatch, getState) => {
         dispatch(updateContactPending())
-        console.log('current state: ', getState())
-        console.log(updatedContact)
         axios.put('http://localhost:3001/contacts/' + id, {
             ...updatedContact
         })
         .then(res => {
-            console.log(res)
-            console.log(res.data)
             dispatch(updateContactSuccess(id, updatedContact))
         })
         .catch(err => {
