@@ -19,18 +19,23 @@ class ContactForm extends Component {
 
     handleSubmit = (evt) => {
         evt.preventDefault()
-        this.props.dispatch(createContact(this.state.name, this.state.email, this.state.phone))
+        this.props.dispatch(createContact(
+            this.state.name,
+            this.state.email,
+            this.state.phone
+            ))
+        this.setState({ name: '', email: '', phone: ''})
     }
     render() {
         return (
             <div className='ContactForm'>
                 <form onSubmit={this.handleSubmit}>
                     <label>Name</label>
-                    <input onChange={this.handleChange} className='input-field' name='name' type='text' />
+                    <input onChange={this.handleChange} className='input-field' name='name' value={this.state.name} type='text' />
                     <label>Email</label>
-                    <input onChange={this.handleChange} className='input-field' name='email' type='text' />
+                    <input onChange={this.handleChange} className='input-field' name='email' value={this.state.email} type='text' />
                     <label>Phone</label>
-                    <input onChange={this.handleChange} className='input-field' name='phone' type='text' />
+                    <input onChange={this.handleChange} className='input-field' name='phone' value={this.state.phone} type='text' />
                     <input className='submit' type='submit' />
                 </form>
             </div>
