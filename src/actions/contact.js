@@ -3,7 +3,8 @@ import {
     FETCH_CONTACTS_SUCCESS,
     CREATE_CONTACT_PENDING,
     CREATE_CONTACT_SUCCESS,
-    DELETE_CONTACT,
+    DELETE_CONTACT_PENDING,
+    DELETE_CONTACT_SUCCESS,
     UPDATE_CONTACT
   } from "../constants/contact";
 
@@ -69,12 +70,33 @@ export function createContact(name, email, phone, id) {
     }
 }
 
-export function deleteContact(id) {
+export function deleteContactPending() {
     return {
-        type: DELETE_CONTACT,
+        type: DELETE_CONTACT_PENDING
+    }
+}
+
+export function deleteContactSuccess(id) {
+    return {
+        type: DELETE_CONTACT_SUCCESS,
         payload: {
             id
         }
+    }
+}
+
+export function deleteContact(id) {
+    return (dispatch, getState) => {
+        dispatch(deleteContactPending())
+        console.log('current state: ', getState())
+        axios.delete('http://localhost:3001/contacts/' + id)
+        .then(res => {
+            console.log(res)
+            dispatch(deleteContactSuccess(id))
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 }
 

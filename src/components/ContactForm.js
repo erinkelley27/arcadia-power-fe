@@ -6,6 +6,7 @@ import './ContactForm.css'
 class ContactForm extends Component {
     handleSubmit = (evt) => {
         evt.preventDefault()
+        
         let name = evt.target[0].value
         let email = evt.target[1].value
         let phone = evt.target[2].value
