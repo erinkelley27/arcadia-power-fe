@@ -1,13 +1,15 @@
 import {
   FETCH_CONTACTS_PENDING,
   FETCH_CONTACTS_SUCCESS,
-  CREATE_CONTACT,
+  CREATE_CONTACT_PENDING,
+  CREATE_CONTACT_SUCCESS,
   DELETE_CONTACT,
   UPDATE_CONTACT
 } from "../constants/contact";
 
 const DEFAULT_STATE = {
   isFetching: false,
+  isCreating: false,
   contacts: [],
   error: null
 }
@@ -23,9 +25,14 @@ export default function contactReducer(state = DEFAULT_STATE, action) {
         isFetching: false,
         contacts: action.contacts
       })
-    case CREATE_CONTACT:
+    case CREATE_CONTACT_PENDING:
+        return Object.assign({}, state, {
+          isCreating: true
+        })
+    case CREATE_CONTACT_SUCCESS:
       return {
         ...state,
+        isCreating: false,
         contacts: [...state.contacts, action.payload]
       }
     case DELETE_CONTACT:
