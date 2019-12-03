@@ -12,11 +12,11 @@ class ContactForm extends Component {
             phone: ''
         }
     }
-
+    // The information the user adds to each input field will be added to the component's state
     handleChange = (evt) => {
         this.setState({ [evt.target.name]: evt.target.value })
     }
-
+    // On submit, the new contact will be created and the input fields will be cleared.
     handleSubmit = (evt) => {
         evt.preventDefault()
         this.props.dispatch(createContact(

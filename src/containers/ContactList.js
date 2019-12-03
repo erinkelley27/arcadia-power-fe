@@ -7,8 +7,11 @@ import { connect } from 'react-redux'
 import { fetchContacts, deleteContact, updateContact } from '../actions/contact'
 
 const Contacts = ({ contacts, error, deleteContact, updateContact }) => {
+    // Set up a conditional to alert the user of an error if there is one.
     if (error) {
       return <p className='create-error'>Error making your request.</p>
+    // If there is no error, the contact list will be returned as individual items in table.
+    // Each item has an onClick and onChange method passed in to delete and update a contact, repsectively.
     } else {
       return <List>{
         contacts.map((contact, index) => (

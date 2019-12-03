@@ -1,3 +1,5 @@
+// Declaration of all contants utilized with Redux
+
 export const FETCH_CONTACTS_PENDING = 'FETCH_CONTACTS_PENDING'
 export const FETCH_CONTACTS_SUCCESS = 'FETCH_CONTACTS_SUCCESS'
 export const FETCH_CONTACTS_FAILURE = 'FETCH_CONTACTS_FAILURE'

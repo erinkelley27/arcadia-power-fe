@@ -1,3 +1,4 @@
+// Import constants
 import {
   FETCH_CONTACTS_PENDING,
   FETCH_CONTACTS_SUCCESS,
@@ -13,6 +14,7 @@ import {
   UPDATE_CONTACT_FAILURE
 } from "../constants/contact";
 
+// Declare default state - the state the app will start with
 const DEFAULT_STATE = {
   isFetching: false,
   isCreating: false,
@@ -23,12 +25,19 @@ const DEFAULT_STATE = {
   payload: null
 }
 
+// The reducer
+// State will be updated based on the action type
+// For pending action types, the state of isFetching will be set to true
+// For success action types, the state of isFetching will be set to false,
+// error set to false and contacts ajusted based on CRUD functionality.
+// For failure action types, the state of error will be set to true.
 export default function contactReducer(state = DEFAULT_STATE, action) {
   switch (action.type) {
     case FETCH_CONTACTS_PENDING:
       return Object.assign({}, state, {
         isFetching: true
       })
+    // The state of contacts will be updated to include the list of contacts from the db.
     case FETCH_CONTACTS_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
@@ -43,6 +52,7 @@ export default function contactReducer(state = DEFAULT_STATE, action) {
         return Object.assign({}, state, {
           isCreating: true
         })
+    // The newly created contact will be added to the contact list in state
     case CREATE_CONTACT_SUCCESS:
       return {
         ...state,
@@ -58,6 +68,8 @@ export default function contactReducer(state = DEFAULT_STATE, action) {
         return Object.assign({}, state, {
           isDeleting: true
         })
+    // The contact the user has selected to delete will be removed from state by programming the 
+    // .filter() array method to only return contacts whose id does not equal the one selected
     case DELETE_CONTACT_SUCCESS:
         return Object.assign({}, state, {
           isDeleting: false,
@@ -75,6 +87,9 @@ export default function contactReducer(state = DEFAULT_STATE, action) {
         return Object.assign({}, state, {
           isUpdating: true
         })
+    // The contact will be updated by mapping through the contact list.
+    // First, all contacts that were unaltered will be returned.
+    // Second, the updated contact will be put back into the array using the spread operator.
     case UPDATE_CONTACT_SUCCESS:
         return {
             ...state,

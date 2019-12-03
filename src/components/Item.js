@@ -2,6 +2,7 @@ import React from 'react'
 
 import './Item.css'
 
+// Each row in the table will be populated with each contact's name, email and phone.
 const Item = ({ name = '', email = '', phone = '', onClick = () => {}, onChange = () => {} }) => (
   <tr>
     <td>{name}</td>
